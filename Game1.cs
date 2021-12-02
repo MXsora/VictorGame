@@ -69,7 +69,7 @@ namespace VictorGame
 
             ScreenManager.Instance.Update(gameTime);
 
-            curKeyBrdState = Keyboard.GetState();
+            /*curKeyBrdState = Keyboard.GetState();
 
             if (prevKeyBrdState.IsKeyUp(Keys.Up) && curKeyBrdState.IsKeyDown(Keys.Up))
             {
@@ -93,14 +93,14 @@ namespace VictorGame
 
             prevKeyBrdState = curKeyBrdState;
 
-            makePlayer();
+            makePlayer();*/
 
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Black);
+            GraphicsDevice.Clear(Color.White);
 
             _spriteBatch.Begin();
             ScreenManager.Instance.Draw(_spriteBatch);

@@ -12,7 +12,6 @@ namespace VictorGame.Models
     {
         protected ContentManager content;
         private SpriteFont font;
-        [XmlIgnore]
         public Type Type;
 
         public GameScreen()

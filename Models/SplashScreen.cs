@@ -9,11 +9,13 @@ namespace VictorGame.Models
 {
     public class SplashScreen : GameScreen
     {
-        public Image image = new Image();
+        public Image image { get; set; }
 
         public SplashScreen(string path)
         {
+            image = new Image();
             image.Path = path;
+            image.Effects = "FadeEffect";
         }
         public override void LoadContent()
         {
