@@ -11,6 +11,10 @@ namespace VictorGame.Models
     {
         public Image image = new Image();
 
+        public SplashScreen(string path)
+        {
+            image.Path = path;
+        }
         public override void LoadContent()
         {
             base.LoadContent();

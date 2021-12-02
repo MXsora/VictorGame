@@ -12,7 +12,6 @@ namespace VictorGame.Models
         private static ScreenManager instance;
         public Vector2 Dimensions { private set; get; }
         public ContentManager content { private set; get; }
-        XmlManager<GameScreen> xmlGameScreenManager;
 
         GameScreen currentScreen;
         public GraphicsDevice GraphicsDevice;
@@ -33,16 +32,12 @@ namespace VictorGame.Models
         public ScreenManager()
         {
             Dimensions = new Vector2(1280, 720);
-
-            currentScreen = new SplashScreen();
-            xmlGameScreenManager = new XmlManager<GameScreen>();
-            xmlGameScreenManager.Type = currentScreen.Type;
-            currentScreen = xmlGameScreenManager.Load("Content/Load/SplashScreen.xml");
+            currentScreen = new SplashScreen("Images/DeveloperScreen");
         }
 
         public void LoadContent(ContentManager Content)
         {
-            content = new ContentManager(Content.ServiceProvider, "Content");
+            this.content = new ContentManager(Content.ServiceProvider, "Content");
             currentScreen.LoadContent();
         }
 

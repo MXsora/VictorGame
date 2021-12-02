@@ -11,10 +11,10 @@ namespace VictorGame.Models
     public class Image
     {
         public float Alpha;
-        public string Text, FontName, Path;
+        public string Text, FontName;
+        public string Path {set; get;}
         public Vector2 Position, Scale;
         public Rectangle SourceRect;
-        [XmlIgnore]
         public Texture2D Texture;
         Vector2 origin;
         ContentManager content;
