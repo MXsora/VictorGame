@@ -46,8 +46,11 @@ namespace VictorGame
 
         protected override void Initialize()
         {
-            _graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
-            _graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
+            //_graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
+            //_graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
+            //need to be customizable
+            _graphics.PreferredBackBufferWidth = 1920;
+            _graphics.PreferredBackBufferHeight = 1080;
             _graphics.ApplyChanges();
             base.Initialize();
         }

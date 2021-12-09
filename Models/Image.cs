@@ -12,7 +12,7 @@ namespace VictorGame.Models
     {
         public float Alpha;
         public string Text, FontName;
-        public string Path {set; get;}
+        public string Path;
         public bool IsActive;
         public Vector2 Position, Scale;
         public Rectangle SourceRect;
@@ -24,11 +24,23 @@ namespace VictorGame.Models
         Dictionary<string, ImageEffect> effectList;
         public string Effects;
 
-        public FadeEffect fadeEffect;
+        public FadeEffect FadeEffect;
 
         public Image()
         {
             Path = Text = Effects = String.Empty;
+            FontName = "Sprites/pixelmix";
+            Position = Vector2.Zero;
+            Scale = Vector2.One;
+            Alpha = 1.0f;
+            SourceRect = Rectangle.Empty;
+            effectList = new Dictionary<string, ImageEffect>();
+        }
+
+        public Image(string path)
+        {
+            Path = path;
+            Text = Effects = string.Empty;
             FontName = "Sprites/pixelmix";
             Position = Vector2.Zero;
             Scale = Vector2.One;
@@ -57,9 +69,8 @@ namespace VictorGame.Models
         {
             if(effectList.ContainsKey(effect))
             {
-                //effectList[effect].IsActive = true;
+                effectList[effect].IsActive = true;
                 var obj = this;
-                obj.IsActive = true;
                 effectList[effect].LoadContent(ref obj);
             }
         }
@@ -87,12 +98,12 @@ namespace VictorGame.Models
             if (Texture != null)
             {
                 dimensions.X += Texture.Width;
-                dimensions.Y += Math.Max(Texture.Height, font.MeasureString(Text).Y);
+                dimensions.Y = Math.Max(Texture.Height, font.MeasureString(Text).Y);
             }
             else
             {
                 dimensions.X += font.MeasureString(Text).X;
-                dimensions.Y += font.MeasureString(Text).Y;
+                dimensions.Y = font.MeasureString(Text).Y;
             }
 
             if (SourceRect == Rectangle.Empty)
@@ -115,7 +126,7 @@ namespace VictorGame.Models
 
             ScreenManager.Instance.GraphicsDevice.SetRenderTarget(null);
 
-            SetEffect<FadeEffect>(ref fadeEffect);
+            SetEffect<FadeEffect>(ref FadeEffect);
 
             if(Effects != String.Empty)
             {
@@ -138,9 +149,9 @@ namespace VictorGame.Models
 
         public void Update(GameTime gameTime)
         {
-            foreach(var effect in effectList)
+            foreach (var effect in effectList)
             {
-                if(effect.Value.IsActive)
+                if (effect.Value.IsActive)
                 {
                     effect.Value.Update(gameTime);
                 }
@@ -150,7 +161,7 @@ namespace VictorGame.Models
         public void Draw(SpriteBatch spriteBatch)
         {
             origin = new Vector2(SourceRect.Width / 2, SourceRect.Height / 2);
-            spriteBatch.Draw(Texture, Position + origin, SourceRect, Color.White * Alpha, 0.0f, origin, Scale, SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(Texture, Position, SourceRect, Color.White * Alpha, 0.0f, origin, Scale, SpriteEffects.None, 0.0f);
         }
     }
 }

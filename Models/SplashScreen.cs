@@ -4,19 +4,22 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Input;
 
 namespace VictorGame.Models
 {
     public class SplashScreen : GameScreen
     {
-        public Image image { get; set; }
+        public Image image = new Image();
 
-        public SplashScreen(string path)
+        public SplashScreen()
         {
-            image = new Image();
-            image.Path = path;
+            image.Path = "Images/SplashScreen";
             image.Effects = "FadeEffect";
+            //needs to change depending on resolution
+            image.Position = new Vector2(960,540);
         }
+
         public override void LoadContent()
         {
             base.LoadContent();
@@ -33,6 +36,11 @@ namespace VictorGame.Models
         {
             base.Update(gameTime);
             image.Update(gameTime);
+
+            if (InputManager.Instance.KeyPressed(Keys.Enter, Keys.Space))
+            {
+                ScreenManager.Instance.ChangeScreen("TitleScreen");
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)

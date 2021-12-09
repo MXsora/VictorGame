@@ -31,7 +31,7 @@ namespace VictorGame.Models
 
         public virtual void Update(GameTime gameTime)
         {
-
+            InputManager.Instance.Update();
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

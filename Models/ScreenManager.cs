@@ -4,6 +4,7 @@ using System.Text;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Content;
+using VictorGame.Models;
 
 namespace VictorGame.Models
 {
@@ -13,9 +14,13 @@ namespace VictorGame.Models
         public Vector2 Dimensions { private set; get; }
         public ContentManager content { private set; get; }
 
-        GameScreen currentScreen;
+        GameScreen currentScreen, newScreen;
         public GraphicsDevice GraphicsDevice;
         public SpriteBatch SpriteBatch;
+
+        public Image image; 
+
+        public bool IsTransitioning { private set; get; }
 
         public static ScreenManager Instance
         {
@@ -32,28 +37,69 @@ namespace VictorGame.Models
         public ScreenManager()
         {
             Dimensions = new Vector2(1280, 720);
-            currentScreen = new SplashScreen("Images/DeveloperScreen");
+            currentScreen = new SplashScreen();
+            image = new Image("Images/FadeImage");
+            image.Alpha = 0.0f;
+            //needs to change depending on resolution
+            image.Position = new Vector2(960, 540);
+        }
+        
+        public void ChangeScreen(string screenName)
+        {
+            newScreen = (GameScreen)Activator.CreateInstance(Type.GetType("VictorGame.Models." + screenName));
+            image.Effects = "FadeEffect";
+            image.FadeEffect.increase = true;
+            image.Alpha = 0.01f;
+            image.Scale = new Vector2(2000, 1100);
+            image.FadeEffect.IsActive = true;
+            IsTransitioning = true;
+        }
+
+        private void Transition(GameTime gameTime)
+        {
+            if (IsTransitioning)
+            {
+                image.Update(gameTime);
+                if(image.Alpha >= 1.0f)
+                {
+                    currentScreen.UnloadContent();
+                    currentScreen = newScreen;
+                    currentScreen.LoadContent();
+                }
+                else if (image.Alpha <= 0.0f)
+                {
+                    image.IsActive = false;
+                    IsTransitioning = false;
+                }
+            }
         }
 
         public void LoadContent(ContentManager Content)
         {
             this.content = new ContentManager(Content.ServiceProvider, "Content");
             currentScreen.LoadContent();
+            image.LoadContent();
         }
 
         public void UnloadContent()
         {
             currentScreen.UnloadContent();
+            image.UnloadContent();
         }
 
         public void Update(GameTime gameTime)
         {
             currentScreen.Update(gameTime);
+            Transition(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             currentScreen.Draw(spriteBatch);
+            if (IsTransitioning)
+            {
+                image.Draw(spriteBatch);
+            }
         }
     }
 }

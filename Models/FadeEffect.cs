@@ -12,21 +12,21 @@ namespace VictorGame.Models
 
         public FadeEffect()
         {
-            fadeSpeed = 0.1f;
+            fadeSpeed = 0.5f;
             increase = false;
         }
 
-        public virtual void LoadContent(ref Image image)
+        public override void LoadContent(ref Image image)
         {
             base.LoadContent(ref image);
         }
 
-        public virtual void UnloadContent()
+        public override void UnloadContent()
         {
             base.UnloadContent();
         }
 
-        public virtual void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
             if (image.IsActive)
