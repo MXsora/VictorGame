@@ -40,17 +40,18 @@ namespace VictorGame.Models
             currentScreen = new SplashScreen();
             image = new Image("Images/FadeImage");
             image.Alpha = 0.0f;
+            image.Effects = "FadeEffect";
             //needs to change depending on resolution
-            image.Position = new Vector2(960, 540);
+            //image.Position = new Vector2(960, 540);
+            image.Scale = new Vector2(2000, 1100);
         }
-        
+
         public void ChangeScreen(string screenName)
         {
             newScreen = (GameScreen)Activator.CreateInstance(Type.GetType("VictorGame.Models." + screenName));
-            image.Effects = "FadeEffect";
             image.FadeEffect.increase = true;
             image.Alpha = 0.01f;
-            image.Scale = new Vector2(2000, 1100);
+            image.IsActive = true;
             image.FadeEffect.IsActive = true;
             IsTransitioning = true;
         }

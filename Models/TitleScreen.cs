@@ -21,6 +21,9 @@ namespace VictorGame.Models
             menuManager.menu.items.Add(newGame);
             menuManager.menu.items.Add(options);
             bg = new Image("Images/TitleScreen");
+            //this needs to change based on resolution
+            bg.Position = new Vector2(960, 540);
+            bg.Scale = new Vector2(2, 2);
         }
 
         public override void LoadContent()

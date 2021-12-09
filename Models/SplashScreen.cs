@@ -18,6 +18,7 @@ namespace VictorGame.Models
             image.Effects = "FadeEffect";
             //needs to change depending on resolution
             image.Position = new Vector2(960,540);
+            image.Scale = new Vector2(2, 2);
         }
 
         public override void LoadContent()
