@@ -47,3 +47,5 @@ E:\Personal Work\Alex's Dumb Video Game Ideas\MonoGameProjects\VictorGame\Victor
 E:\Personal Work\Alex's Dumb Video Game Ideas\MonoGameProjects\VictorGame\VictorGame\obj\Debug\netcoreapp3.1\VictorGame.dll
 E:\Personal Work\Alex's Dumb Video Game Ideas\MonoGameProjects\VictorGame\VictorGame\obj\Debug\netcoreapp3.1\VictorGame.pdb
 E:\Personal Work\Alex's Dumb Video Game Ideas\MonoGameProjects\VictorGame\VictorGame\obj\Debug\netcoreapp3.1\VictorGame.genruntimeconfig.cache
+E:\Personal Work\Alex's Dumb Video Game Ideas\MonoGameProjects\VictorGame\VictorGame\bin\Debug\netcoreapp3.1\Content\Images\FadeImage.xnb
+E:\Personal Work\Alex's Dumb Video Game Ideas\MonoGameProjects\VictorGame\VictorGame\bin\Debug\netcoreapp3.1\Content\Images\SplashScreen.xnb

@@ -12,7 +12,6 @@ namespace VictorGame.Models
     {
         protected ContentManager content;
         private SpriteFont font;
-        [XmlIgnore]
         public Type Type;
 
         public GameScreen()
@@ -32,7 +31,7 @@ namespace VictorGame.Models
 
         public virtual void Update(GameTime gameTime)
         {
-
+            InputManager.Instance.Update();
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
