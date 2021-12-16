@@ -38,7 +38,7 @@ namespace VictorGame.Models
                 {
                     item.image.Position = new Vector2(dimensions.X, (ScreenManager.Instance.Dimensions.Y - item.image.SourceRect.Height) / 2);
                 }
-                else if(axis == "y")
+                else if(axis == "Y")
                 {
                     item.image.Position = new Vector2((ScreenManager.Instance.Dimensions.X - item.image.SourceRect.Width) / 2, dimensions.Y);
                 }

@@ -21,7 +21,6 @@ namespace VictorGame.Models
         {
             this.image = Image;
             this.Alpha = Image.Alpha;
-            this.IsActive = image.IsActive;
         }
 
         public virtual void UnloadContent()

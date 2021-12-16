@@ -36,7 +36,7 @@ namespace VictorGame.Models
 
         public ScreenManager()
         {
-            Dimensions = new Vector2(1280, 720);
+            Dimensions = new Vector2(1920, 1080);
             currentScreen = new SplashScreen();
             image = new Image("Images/FadeImage");
             image.Alpha = 0.0f;
