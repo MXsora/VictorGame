@@ -24,6 +24,28 @@ namespace VictorGame.Models
             items = new List<MenuItem>();
         }
 
+        public int getItemNumber()
+        {
+            return itemNumber;
+        }
+
+        public void Transition(float alpha)
+        {
+            foreach(MenuItem item in items)
+            {
+                item.image.IsActive = true;
+                item.image.Alpha = alpha;
+                if (alpha <= 0.0f)
+                {
+                    item.image.FadeEffect.increase = true;
+                }
+                else
+                {
+                    item.image.FadeEffect.increase = false;
+                }
+            }
+        }
+
         void AlignMenuItems()
         {
             Vector2 dimensions = Vector2.Zero;
